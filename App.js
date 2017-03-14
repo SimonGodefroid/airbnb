@@ -12,14 +12,28 @@ import {
 import HomeScene from './src/scenes/HomeScene';
 import AboutScene from './src/scenes/AboutScene';
 import RoomsContainer from './src/scenes/RoomsContainer';
+import RoomContainer from './src/scenes/RoomContainer';
 
 
 class App extends React.Component {
   render() {
     return (
-      <Router>
-        <Scene key={'home'} title={'Accueil'} component={HomeScene} />
-        <Scene key={'rooms'} title={'Rooms'} component={RoomsContainer} initial={true} />
+      <Router
+        navigationBarStyle={{backgroundColor:'#FF5A5F'}}
+        titleStyle={{color:'white'}}>
+        <Scene
+          key={'home'} 
+          title={'Accueil'} 
+          component={HomeScene}/>
+
+        <Scene 
+          key={'rooms'}
+          title={'Rooms'}
+          component={RoomsContainer}
+          initial={true}
+          />
+
+        <Scene key={'room'} title={'Room'} component={RoomContainer} />
         <Scene key={'about'} title={'About'} component={AboutScene} />
       </Router>
     );
@@ -27,3 +41,9 @@ class App extends React.Component {
 }
 
 export default App;
+
+const styles = StyleSheet.create({
+  container: {
+    
+  },
+});
