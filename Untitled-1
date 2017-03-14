@@ -1,0 +1,12 @@
+_id:'',
+shortId:'',
+title:'',
+description:'',
+price:'',
+ratingValue:'',
+reviews:'',
+loc:'',
+user:'',
+city:'',
+photos:'',
+user
