@@ -12,6 +12,7 @@ from 'react-native';
 
 import { Actions } from 'react-native-router-flux';
 import Card from '../components/rooms/Card';
+import Avatar from '../components/user/Avatar';
 
 const styles = StyleSheet.create({
   container: {
@@ -64,6 +65,7 @@ constructor(props){
   renderRow(rowData){
     return(
       <TouchableOpacity onPress={() => Actions.room({room:rowData})}>
+      <View style={{position:'relative'}}>
         <Card 
           photos={rowData.photos}
           title={rowData.title}
@@ -72,6 +74,11 @@ constructor(props){
           ratingValue={rowData.ratingValue}
           user={rowData.user}
           price={rowData.price}/>
+      </View>
+      <View style={{position:'absolute',bottom:60, right:20}}>
+        <Avatar          
+          userPhoto={rowData.user.account.photos[0]}/>
+      </View>
       </TouchableOpacity>
     )
   }

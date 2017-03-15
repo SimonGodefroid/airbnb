@@ -11,9 +11,9 @@ import {
 
 import HomeScene from './src/scenes/HomeScene';
 import AboutScene from './src/scenes/AboutScene';
-import RoomsContainer from './src/scenes/RoomsContainer';
-import RoomContainer from './src/scenes/RoomContainer';
-
+import RoomsScene from './src/scenes/RoomsScene';
+import RoomScene from './src/scenes/RoomScene';
+import ProfileScene from './src/scenes/ProfileScene';
 
 class App extends React.Component {
   render() {
@@ -26,16 +26,23 @@ class App extends React.Component {
           key={'home'} 
           title={'Accueil'} 
           component={HomeScene}/>
-
         <Scene 
           key={'rooms'}
           title={'Rooms'}
-          component={RoomsContainer}
-          initial={true}
-          />
-
-        <Scene key={'room'} title={'Room'} component={RoomContainer} backButtonTextStyle={{color:'white'}}/>
-        <Scene key={'about'} title={'About'} component={AboutScene} />
+          component={RoomsScene}
+          initial={true}/>
+        <Scene 
+          key={'room'}
+          title={'Room'}
+          component={RoomScene}/>
+        <Scene 
+          key={'profile'}
+          title={'Profile'}
+          component={ProfileScene}/>
+        <Scene 
+          key={'about'}
+          title={'About'}
+          component={AboutScene}/>
       </Router>
     );
   }
@@ -43,15 +50,4 @@ class App extends React.Component {
 
 export default App;
 
-const styles = StyleSheet.create({
-  container: {
-    
-  },
-});
 
-
-// TODOs 
-// créer un composant card
-// créer un composant avatar
-// 
-// 

@@ -11,6 +11,7 @@ import {
 from 'react-native';      
 
 import Avatar from '../user/Avatar';
+import Rating from '../rooms/Rating';
 
 
 // pour récupérer la height et la width du device via Dimensions.
@@ -60,9 +61,7 @@ const styles = StyleSheet.create({
 
 
 export default class Card extends Component{
-
   render(){
-    console.log(this.props.user);
     return(
       <View
         style={styles.card}>
@@ -70,16 +69,16 @@ export default class Card extends Component{
           style={styles.image}
           source={{uri: this.props.photos[0] }}/>
         <Text 
-          style={styles.title}>{this.props.title}</Text>
+          style={styles.title}>
+            {this.props.title}</Text>
         <Text 
-          style={styles.description}>{this.props.description}</Text>  
-        <Text 
-          style={styles.label}>{this.props.price}€</Text>  
-        <Text 
-          style={{color:'#f2d637', fontSize:20}}>{"★".repeat(this.props.ratingValue)}{"☆".repeat(5-this.props.ratingValue)}</Text>
+          style={styles.label}>
+            {this.props.price}€</Text>  
+        <Rating 
+          ratingValue={this.props.ratingValue}/>
          <Avatar
-          user={this.props.user}/>
-
+          userPhoto={this.props.userPhoto}
+          userName={this.props.userName}/>
       </View>
     )
   }
