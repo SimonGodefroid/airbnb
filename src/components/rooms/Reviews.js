@@ -18,14 +18,13 @@ const styles = StyleSheet.create({
 
 
 
-export default class Description extends Component{
+export default class Reviews extends Component{
 
   render(){
   return(
     <View>
       <Text>
-        {this.props.user.description}
-        {this.props.user.room.description}
+        {this.props.title}
       </Text>
     </View>
   )

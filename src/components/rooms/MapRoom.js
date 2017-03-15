@@ -2,8 +2,21 @@ import React from 'react';
 import Map from 'react-native-maps';
 
 class MapRoom extends React.Component {
+
+  constructor(props){
+    super(props)
+    this.state = {
+      position:{},
+    }
+  }
+
+  componentDidMount(){
+    navigator.geolocation.getCurrentPosition(position => this.setState({position:position}))
+  }
+  
   render() {
     console.log('MapRoom',this.props);
+    console.log('state.position',this.state.position);
     return (
       <Map
         initialRegion={{
@@ -12,6 +25,7 @@ class MapRoom extends React.Component {
           latitudeDelta: 0.0922,
           longitudeDelta: 0.0421,
         }}
+        //utiliser region pour faire la géoloc
         style={this.props.style}>
         <Map.Marker
           coordinate={{
@@ -19,8 +33,8 @@ class MapRoom extends React.Component {
             longitude: this.props.roomLong,
           }}
           title={this.props.title}
-          description={'React Native training institute'} />
-          </Map>
+          description={this.props.title} />
+      </Map>
     );
   }
 }

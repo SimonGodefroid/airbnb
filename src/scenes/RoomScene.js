@@ -81,8 +81,8 @@ export default class App extends Component {
         <View>
           <MapRoom 
             style={styles.map}
-            roomLat={this.props.room.loc[0]}
-            roomLong={this.props.room.loc[1]}
+            roomLat={this.props.room.loc[1]}
+            roomLong={this.props.room.loc[0]}
             roomTitle={this.props.room.title}
             />
         </View>
