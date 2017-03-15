@@ -70,7 +70,8 @@ constructor(props){
           description={rowData.description}
           price={rowData.price}
           ratingValue={rowData.ratingValue}
-          user={rowData.user}/>
+          user={rowData.user}
+          price={rowData.price}/>
       </TouchableOpacity>
     )
   }
