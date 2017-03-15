@@ -20,7 +20,8 @@ class App extends React.Component {
     return (
       <Router
         navigationBarStyle={{backgroundColor:'#FF5A5F'}}
-        titleStyle={{color:'white'}}>
+        titleStyle={{color:'white'}}
+        backButtonTextStyle={{color:'white'}}>
         <Scene
           key={'home'} 
           title={'Accueil'} 
@@ -33,7 +34,7 @@ class App extends React.Component {
           initial={true}
           />
 
-        <Scene key={'room'} title={'Room'} component={RoomContainer} />
+        <Scene key={'room'} title={'Room'} component={RoomContainer} backButtonTextStyle={{color:'white'}}/>
         <Scene key={'about'} title={'About'} component={AboutScene} />
       </Router>
     );
@@ -47,3 +48,10 @@ const styles = StyleSheet.create({
     
   },
 });
+
+
+// TODOs 
+// créer un composant card
+// créer un composant avatar
+// 
+// 
