@@ -13,6 +13,7 @@ import Rating from '../components/rooms/Rating';
 import MapRoom from '../components/rooms/MapRoom';
 import Avatar from '../components/user/Avatar';
 import { Actions } from 'react-native-router-flux';
+import Description from '../components/core/Description';
 
 
 let {
@@ -43,13 +44,6 @@ const styles = StyleSheet.create({
 
 export default class App extends Component {
 
-  constructor(props){
-    super(props)
-    this.state = {
-      numberOfLinesNum:3
-    }
-  }
-
   render() {
     console.log('user name',this.props.room.user.account.username);
     return (
@@ -62,14 +56,8 @@ export default class App extends Component {
             style={{fontFamily:'CircularAirPro-Book'}}>
             {this.props.room.title}
           </Text>
-          <TouchableOpacity 
-            onPress={()=>this.setState({numberOfLinesNum:5})}>
-            <Text 
-              style={{fontFamily:'CircularAirPro-Light'}}
-              numberOfLines={this.state.numberOfLinesNum}>
-              {this.props.room.description}
-            </Text>  
-          </TouchableOpacity>
+          <Description 
+            description={this.props.room.description}/>
           <Rating 
             ratingValue={this.props.room.ratingValue}/>
           <TouchableOpacity onPress={() => Actions.profile({user:this.props.room.user})}>

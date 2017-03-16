@@ -24,7 +24,7 @@ export default class Reviews extends Component{
   return(
     <View>
       <Text>
-        {this.props.title}
+        {this.props.reviews} Reviews
       </Text>
     </View>
   )

@@ -17,7 +17,7 @@ export default class Avatar extends Component{
     return(
       <View style={{flexDirection:'row',}}>
         <Image 
-          style={{width:50,height:50,borderRadius:25}}
+          style={{width:50,height:50,borderRadius:25,borderWidth:StyleSheet.hairlineWidth}}
           source={{uri: this.props.userPhoto}}/>
         <Text>
           {this.props.userName}

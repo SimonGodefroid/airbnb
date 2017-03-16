@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {
   StyleSheet,
+  Button,
   Text,
   ListView,
   TouchableOpacity,
@@ -13,6 +14,8 @@ from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import Card from '../components/rooms/Card';
 import Avatar from '../components/user/Avatar';
+import Reviews from '../components/rooms/Reviews';
+
 
 const styles = StyleSheet.create({
   container: {
@@ -73,9 +76,10 @@ constructor(props){
           price={rowData.price}
           ratingValue={rowData.ratingValue}
           user={rowData.user}
-          price={rowData.price}/>
+          price={rowData.price}
+          reviews={rowData.reviews}/>
       </View>
-      <View style={{position:'absolute',bottom:60, right:20}}>
+      <View style={{position:'absolute',bottom:20, right:20}}>
         <Avatar          
           userPhoto={rowData.user.account.photos[0]}/>
       </View>

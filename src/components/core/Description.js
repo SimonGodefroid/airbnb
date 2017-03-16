@@ -20,12 +20,21 @@ const styles = StyleSheet.create({
 
 export default class Description extends Component{
 
+  constructor(props){
+    super(props)
+    this.state = {
+      numberOfLinesNum:3
+    }
+  }
+
   render(){
   return(
     <View>
-      <Text>
-        {this.props.user.description}
-        {this.props.user.room.description}
+      <Text 
+        style={{fontFamily:'CircularAirPro-Light'}}
+        numberOfLines={this.state.numberOfLinesNum}
+        onPress={()=>this.setState({numberOfLinesNum:10})}>
+        {this.props.description}
       </Text>
     </View>
   )
