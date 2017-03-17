@@ -18,35 +18,42 @@ import RoomScene from './src/scenes/RoomScene';
 import ProfileScene from './src/scenes/ProfileScene';
 import LoginScene from './src/scenes/LoginScene';
 
-class App extends React.Component {
+import Icon from 'react-native-vector-icons/Ionicons';
+
+export default class App extends React.Component {
   constructor(props){
     super(props);
     this.state={
-      user:undefined,
+      user: {},
+      isUserChecked:false
     };
-    this.onLoginChangeUserState=this.onLoginChangeUserState.bind(this);
   }
-  componentWillMount(){
-    console.log('App#compowillmount#user',Store.get('user'));   
-    Store.get('user').then((user)=>{
-      this.setState({
-        user:user
-      });
-      if(user){
-        Api.setUser(user); // sert stocker l'utilisateur
+
+  componentDidMount(){ //expliquer
+    console.log('compDidM isUserChecked',this.state.isUserChecked);
+    console.log('compDidM isUserLoggedIn',this.state.isUserLoggedIn);
+    Store.get('user').then((userStore)=>{
+      console.log('componentdidmountuserStore',userStore);
+      const user = userStore||{};
+      if(user._id){
+        Api.setUser(user);
+        this.setState({
+          user:user,
+          isUserChecked:true
+        });
+      }else{
+        this.setState({
+          isUserChecked:true
+        });
       }
     });
   }
 
-  onLoginChangeUserState(user){
-    this.setState({
-      user:user
-    })
-    console.log("onLoginChangeUserState",this.state.user);
-  }
-
-  render() {
-    if(this.state.user===undefined){
+  render(){
+    console.log('App Render isUserChecked',this.state.isUserChecked);
+    const isUserLoggedIn = Object.keys(this.state.user).length!==0;
+    console.log('App Render isUserLoggedIn',isUserLoggedIn);
+    if(this.state.isUserChecked===false){
       return(
         <View>
           <Text>
@@ -54,61 +61,41 @@ class App extends React.Component {
           </Text>
         </View>
       )
-    } else if (this.state.user){
-      return (
-        <Router
-          navigationBarStyle={{backgroundColor:'#FF5A5F'}}
-          titleStyle={{color:'white'}}
+    } 
+    return(
+        <Router 
+          navigationBarStyle={{backgroundColor:'#FF5A5F'}} 
+          titleStyle={{color:'white'}} 
           backButtonTextStyle={{color:'white'}}>
           <Scene
-            key={'home'} 
-            title={'Accueil'} 
-            component={HomeScene}/>
-          <Scene 
-            key={'rooms'}
-            title={'Rooms'}
-            component={RoomsScene}
-            initial={true}/>
-          <Scene 
-            key={'room'}
-            title={'Room'}
-            component={RoomScene}/>
-          <Scene 
-            key={'profile'}
-            title={'Profile'}
-            component={ProfileScene}/>
-          <Scene 
-            key={'about'}
-            title={'About'}
-            component={AboutScene}/>
+            key={'tab'}
+            tabs
+            type={'replace'}>
+             <Scene
+              key={'login'}
+              title={'Login'}
+              component={LoginScene}
+              initial={isUserLoggedIn ? false : true}
+              icon={(props) =>
+                <Icon
+                  name={'md-play'}
+                  color={props.selected ? '#AAA' : '#000' }/>}
+            />
+            <Scene
+              key={'rooms'}
+              title={'Rooms'}
+              component={RoomsScene}
+              initial={isUserLoggedIn ? true : false}
+              icon={(props) =>
+                <Icon
+                  name={'md-star'}
+                  color={props.selected ? '#AAA' : '#000' }/>}
+            />
+          </Scene>
+            <Scene key={'room'} title={'Room'} component={RoomScene}/>
+            <Scene key={'profile'} title={'Profile'} component={ProfileScene}/>
+          
         </Router>
-      );
-    }else{
-            return (
-        <Router
-          navigationBarStyle={{backgroundColor:'#FF5A5F'}}
-          titleStyle={{color:'white'}}
-          backButtonTextStyle={{color:'white'}}>
-          <Scene 
-            key={'login'}
-            title={'Login'}
-            component={LoginScene}
-            onLoginChangeUserStateFn={this.onLoginChangeUserState}
-            initial={true}/>
-          <Scene
-            key={'home'} 
-            title={'Accueil'} 
-            component={HomeScene}/>
-          <Scene 
-            key={'about'}
-            title={'About'}
-            component={AboutScene}/>
-        </Router>
-      );
+      )
     }
   }
-}
-
-export default App;
-
-

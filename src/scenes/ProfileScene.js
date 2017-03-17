@@ -20,7 +20,8 @@ export default class ProfileScene extends Component {
         userPhoto={this.props.user.account.photos[0]}
         userDescription={this.props.user.account.description}
         userRooms={this.props.user.account.rooms}
-        userFavorites={this.props.user.account.favorites[0]}/>
+        userFavorites={this.props.user.account.favorites[0]}
+        userId={this.props.user._id}/>
     );
   }
 }

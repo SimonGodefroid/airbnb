@@ -36,10 +36,7 @@ class Api {
   }
 
   authenticate(user) {
-    Store.save('user', {
-      email: user.email,
-      password: user.password
-    })
+    Store.save('user',user)
   .then(() => {
     console.log('Utilisateur loggé : Store Saved');
   });
@@ -65,14 +62,49 @@ class Api {
       });
   }
 
-  logOut(callback) {
+
+  logOut() {
+    console.log('Api$Logout')
     Store.delete('user')
     .then(() => {
       console.log('Deleted');
     });
     this.setUser(Object.assign({}, this.defaultUser));
-    callback();
   }
+ // Fetches:
+ 
+  getRooms(city,callback){
+    fetch(`http://localhost:3001/api/room?city=${city}`)
+    .then(res=>res.json())
+    .then(json=>{
+      callback(json)
+    });
+  } 
+
+
+  getProfile(id,callback){
+    fetch(`http://localhost:3001/api/user/${id}`)
+    .then(res=>res.json())
+    .then(json=>{
+      callback(json)
+    });
+  }
+
+
+/*
+  getRooms(city,callback){
+    fetch('http://localhost:3001/api/?city=paris')
+    .then(res => res.json();
+    .then(rooms => {
+      callback(rooms);
+    });
+  }
+
+  getRooms(city,callback){
+   return fetch('http://localhost:3001/api/?city=paris')
+    .then(res => res.json());
+  }
+*/
 
   // L'authentification est obligatoire pour getProfile
   getProfile(profile = {}, callback) {

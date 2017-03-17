@@ -45,7 +45,6 @@ const styles = StyleSheet.create({
 export default class App extends Component {
 
   render() {
-    console.log('user name',this.props.room.user.account.username);
     return (
       <ScrollView>
         <View style={styles.container}>

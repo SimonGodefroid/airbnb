@@ -39,8 +39,8 @@ export default class LoginScene extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email:'me@email.com',
-      password: 'mypassword',
+      email:'carine@airbnb-api.com',
+      password: 'password01',
     }
     this.onChangeEmail=this.onChangeEmail.bind(this);
     this.onChangePassword=this.onChangePassword.bind(this);
@@ -48,29 +48,16 @@ export default class LoginScene extends Component {
   }
 
   onSubmit(){
+    console.log('OnSubmit')
     Api.logIn({
         email:this.state.email,
         password:this.state.password,
       },
-      (json)=>{
-        console.log(json)
-        this.props.onLoginChangeUserStateFn(json);
+      (json)=>{      
+        Actions.rooms({type:'replace'});
        }
     );
   }
-
-// onSubmit(){
-//   Api.logIn(
-//     {
-//       email:this.state.email,
-//       password:this.state.password
-//     },
-//     (json)=>{
-//       console.log(json); // callback qui affiche la réponse du fetch qui est un json.
-//       browserHistory.push('/');
-//       alert('Bienvenue !');
-//     }
-//   );
 
 
   onChangeEmail(email){
@@ -101,12 +88,14 @@ export default class LoginScene extends Component {
           placeholder={'email'}
           keyboardType={'email-address'}
           autoCapitalize={'none'}
+          value={this.state.email}
           onChangeText={this.onChangeEmail}/>
         <TextInput
           style={{height: 40, borderColor: 'gray', borderWidth: 1}}
           placeholder={'password'}
           keyboardType={'default'}
           autoCapitalize={'none'}
+          value={this.state.password}
           onChangeText={this.onChangePassword}/>
         <Button
           onPress={this.onSubmit}

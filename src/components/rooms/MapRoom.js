@@ -11,14 +11,14 @@ class MapRoom extends React.Component {
   }
 
   componentDidMount(){
-    navigator.geolocation.getCurrentPosition(position => this.setState({position:position}))
+   // navigator.geolocation.getCurrentPosition(position => this.setState({position:position}))
   }
   // watch position = > en permanence
   // set Interval + getCurrentPosition
   // 
   render() {
-    console.log('MapRoom',this.props);
-    console.log('state.position',this.state.position);
+    //console.log('MapRoom',this.props);
+    //console.log('state.position',this.state.position);
     return (
       <Map
         initialRegion={{
